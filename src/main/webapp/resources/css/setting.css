@@ -1,0 +1,127 @@
+@charset "UTF-8";
+
+* {outline:0 !important;}
+*:focus {outline:none; }
+
+html,body,h1,h2,h3,h4,h5,h6,div,p,blockquote,pre,code,address,ul,ol,li,menu,nav,section,article,aside,dl,dt,dd,table,thead,tbody,tfoot,label,caption,th,td,form,fieldset,legend,hr,input,button,textarea,object,figure,figcaption {margin:0; padding:0; box-sizing: border-box;}
+
+html{-webkit-touch-callout:none; 
+    -webkit-user-select:text; 
+    -webkit-tap-highlight-color:rgba(0, 0, 0, 0);}
+
+body{width:100%; 
+    -webkit-text-size-adjust:none; 
+    word-wrap:break-word; word-break:break-all;}
+
+html, body{ width:100%; margin: 0; padding: 0;
+/* 폰트 부드럽게 처리 */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: auto;
+}
+/* ================================
+ * 폰트 자간 설정
+ * ================================ */
+/* Basic HTML */ h1, h2, h3, h4, h5, h6, p, /* Formating */ abbr, address, b, bdi, bdo, blockquote, cite, code, del, dfn, em, i, ins, kbd, mark, meter, pre, progress, q, rp, rt, ruby, s, samp, small, strong, sub, sup, template, time, u, var, wbr, /* Forms and Input */ form, input, textarea, button, select, optgroup, option, label fieldset, legend, datalist, output, /* Images */ img, map, area, canvas, figcaption, figure, picture, svg, /* Links */ a, link, nav, /* Lists */ ul, ol, li, dl, dt, dd, /* Tables */ table, caption, th, tr, td, thead, tbody, tfoot, col, colgroup, /* Styles and Semantics */ div, span, header, footer, main, section, article, aside, details, dialog, summary, data { letter-spacing: -0.03em; }
+
+ul,ol,li{list-style:none;}
+hr {display:none;}
+
+table{width:100%; border-spacing:0; border-collapse:collapse;}
+img,fieldset {border:0;}
+
+address,cite,code,em {font-style:normal; font-weight:normal;}
+label,img,input,select,textarea,button {vertical-align:middle;}
+caption,legend {line-height:0;font-size:1px;overflow:hidden;}
+hr {display:none;}
+
+main,header,section,nav,footer,aside,article,figure{display:block;}
+a {text-decoration:none; cursor: pointer; color: inherit;}
+a:active, a:hover, a:focus {text-decoration: none;}
+button {border: none; cursor: pointer;}
+input {-webkit-appearance: none;}
+
+/* font */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Roboto-Light');
+    src: url('../fonts/Roboto-Light.eot'),
+         url('../fonts/Roboto-Light2.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Roboto-Light.woff') format('woff'),
+         url('../fonts/Roboto-Light.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Roboto-Regular');
+    src: url('../fonts/Roboto-Regular.eot'),
+         url('../fonts/Roboto-Regular2.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Roboto-Regular.woff') format('woff'),
+         url('../fonts/Roboto-Regular.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    src: local('Roboto-Medium');
+    src: url('../fonts/Roboto-Medium.eot'),
+         url('../fonts/Roboto-Medium2.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Roboto-Medium.woff') format('woff'),
+         url('../fonts/Roboto-Medium.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+    src: local('Roboto-Bold');
+    src: url('../fonts/Roboto-Bold.eot'),
+         url('../fonts/Roboto-Bold2.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/Roboto-Bold.woff') format('woff'),
+         url('../fonts/Roboto-Bold.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'NotoSansKR';
+    font-style: normal;
+    font-weight: 300;
+    src: local('NotoSansKR-Light');
+    src: url('../fonts/NotoSansKR-Light.eot'),
+         url('../fonts/NotoSansKR-Light2.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/NotoSansKR-Light.woff') format('woff'),
+         url('../fonts/NotoSansKR-Light.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'NotoSansKR';
+    font-style: normal;
+    font-weight: 400;
+    src: local('NotoSansKR-Regular');
+    src: url('../fonts/NotoSansKR-Regular.eot'),
+         url('../fonts/NotoSansKR-Regular2.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/NotoSansKR-Regular.woff') format('woff'),
+         url('../fonts/NotoSansKR-Regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'NotoSansKR';
+    font-style: normal;
+    font-weight: 500;
+    src: local('NotoSansKR-Medium');
+    src: url('../fonts/NotoSansKR-Medium.eot'),
+         url('../fonts/NotoSansKR-Medium2.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/NotoSansKR-Medium.woff') format('woff'),
+         url('../fonts/NotoSansKR-Medium.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'NotoSansKR';
+    font-style: normal;
+    font-weight: 700;
+    src: local('NotoSansKR-Bold');
+    src: url('../fonts/NotoSansKR-Bold.eot'),
+         url('../fonts/NotoSansKR-Bold2.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/NotoSansKR-Bold.woff') format('woff'),
+         url('../fonts/NotoSansKR-Bold.woff2') format('woff2');
+}

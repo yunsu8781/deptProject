@@ -1,0 +1,33 @@
+Configuration:
+  name: Default
+  Properties:
+    Property:
+      name: log-path
+      value: /web/logs/log4j2/caring/$date:yyyy/${date:MM}
+Appenders:
+  Console:
+    name: Console_Appender
+    target: SYSTEM_OUT
+    PatternLayout:
+      pattern: "%d{yyyy-MM-dd HH:mm:ss} caring [%t] [%-5p] [%c] [%M] - %m%n"
+
+RollingFile:
+  name: RollingFile_Appender
+  fileName: ${log-path}/caring.log
+  filePattern: ${log-path}/caring.log_%d{yyyy-MM-dd}
+  PatternLayout:
+    pattern: "%d{yyyy-MM-dd HH:mm:ss} caring [%t] [%-5p] [%c] [%M] - %m%n"
+  Policies:
+    TimeBasedTriggeringPolicy:
+      Interval: 1 # filePattern 에 따라 Interval 의 값이 달라짐 dd : 1일, hh : 1시간, mm : 1분 로그가 없는 경우에는 안만듬
+      modulate: true
+  Loggers:
+    Root:
+      level: info
+      AppenderRef:
+
+      - ref: RollingFile_Appender
+      - ref: Console_Appender
+Logger:
+  - name: kr.co.codehive.caring
+    level: debug
