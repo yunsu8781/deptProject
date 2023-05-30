@@ -520,7 +520,6 @@ function toggleLnD() {
     }
 }
 </script>
-
 <!-- 캘린더 rangeCalender.js-->
 <script src="${path}/resources/js/rangeCalender.js" type="text/javascript"></script>
 <!-- 사이드메뉴 leftMenu.js-->

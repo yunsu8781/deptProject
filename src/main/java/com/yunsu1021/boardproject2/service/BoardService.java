@@ -17,6 +17,7 @@ public interface BoardService {
 
     public void insertBoard(String[] boardList) throws Exception;
 
+    //수정할 데이터의 값을 불러오는 메소드
     public BoardDTO getDeptData(String board_no) throws  Exception;
 
     public void updateDept(BoardDTO boardDTO) throws Exception;
