@@ -4,8 +4,14 @@
 <mapper namespace="BoardMapper">
 
     <!--부서 리스트 출력-->
-    <select id="getAllBoard" resultType="com.yunsu1021.boardproject2.dto.BoardDTO">
-        SELECT * FROM board order by board_no desc;
+    <select id="getAllBoard" parameterType="java.util.Map" resultType="com.yunsu1021.boardproject2.dto.BoardDTO">
+        <if test="searchStatus == null and searchArray == null and keyword == null">
+            SELECT * FROM board order by board_no desc l;
+        </if>
+        <if test="searchStatus != null and searchArray != null and keyword != null">
+            SELECT * FROM board WHERE board_title LIKE '%${keyword}%' AND board_status = '${searchStatus}'
+            ORDER BY board_arry ${searchArray}
+        </if>
     </select>
 
     <!--총 수-->
@@ -32,4 +38,5 @@
             board_info = #{board_info}
         WHERE board_no = #{board_no} ;
     </update>
+
 </mapper>

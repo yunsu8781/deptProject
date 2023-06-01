@@ -25,7 +25,6 @@ RollingFile:
     Root:
       level: info
       AppenderRef:
-
       - ref: RollingFile_Appender
       - ref: Console_Appender
 Logger:

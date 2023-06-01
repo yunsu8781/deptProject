@@ -158,26 +158,27 @@
                             </span>부서
                       </span>
                             <div class="fr">
-                                <select class="w120x mgr8 fl" name="searchStatus" title="팀상태">
-                                    <option style="width: 100%" selected value="">팀 상태</option>
-                                    <option value="deptStatusY">사용중</option>
-                                    <option value="deptStatusN">업무종료</option>
-                                </select>
-                                <select class="w120x mgr8 fl" name="searchOption" title="팀 선택값">
-                                    <option selected value="">팀 선택값</option>
-                                    <option value="dept_nm">팀명</option>
-                                    <option value="dept_cd">부서코드</option>
-                                </select>
-                                <input type="text" class="w200x mgr8 fl" placeholder="검색할 단어를 입력하세요" name="keyword"
-                                       value="">
-                                <button type="button" class="btn-st1 w60x he36x mgr8 fl"
-                                        onclick="formSubmit('searchForm')">
-                                    <span>검색</span>
-                                    <span class="fa fa-search"></span>
-                                </button>
-                                <button type="button" class="btn-st6 w36x fl" onclick="resetElementValue('searchForm')">
-                                    <span class="fa fa-undo-alt" style="font-size: 16px;"></span>
-                                </button>
+
+                                <form action="/" method="post">
+
+                                    <select class="w120x mgr8 fl" name="searchStatus" title="팀상태">
+                                        <option style="width: 100%" selected value="">팀 상태</option>
+                                        <option value="Y">사용중</option>
+                                        <option value="N">업무종료</option>
+                                    </select>
+                                    <select class="w120x mgr8 fl" name="searchArray" title="정렬">
+                                        <option style="width: 100%" selected value="">정렬</option>
+                                        <option value="ASC">오름차순</option>
+                                        <option value="DESC">내림차순</option>
+                                    </select>
+                                    <input type="text" class="w200x mgr8 fl" placeholder="검색할 부서명을 입력하세요" name="keyword"
+                                           value="">
+                                    <button type="submit" class="btn-st1 w60x he36x mgr8 fl">
+                                        <span>검색</span>
+                                        <span class="fa fa-search"></span>
+                                    </button>
+                                    <input type="hidden" value="${limitStartNum}" name="limitStartNum">
+                                </form>
                             </div>
                         </div>
 
@@ -200,8 +201,7 @@
                                 <c:forEach var="board" items="${boardList}" varStatus="status">
                                     <tr>
                                         <td>${status.count}</td>
-                                        <td onclick="partModPop()" class="dept_title"
-                                            data-board-no="${board.board_no}">${board.board_title}</td>
+                                        <td onclick="partModPop(${board.board_no})">${board.board_title}</td>
                                         <td>${board.board_arry}</td>
                                         <c:choose>
                                             <c:when test="${board.board_status.equals('Y')}">
@@ -336,9 +336,10 @@
                 </div>
                 <!--  상단 제목 끝  -->
                 <!--  내용 시작   -->
-                <form action="" method="post">
+                <form action="/updateDept" method="post">
                     <div class="con-box">
                         <table class="table-ver2 infor w100">
+
                             <tr>
                                 <th>부서명<span class="tix_point">*</span></th>
                                 <th>정렬<span class="tix_point"></span></th>
@@ -348,6 +349,7 @@
                                     <input id="boardTitle" name="board_title" type="text" class="w100"
                                            style="width: calc(100% - 74px);"
                                            placeholder="부서명을 입력해주세요">
+                                    <input type="hidden" id="boardNo" name="board_no">
                                 </td>
                                 <td>
                                     <input id="boardArry" name="board_arry" type="text" class="w100">
@@ -414,21 +416,14 @@
                 dim.style.display = 'none';
             }
 
-            $('.dept_title').click(function () {
-                const boardNo = $(this).data('board-no'); // 클릭한 요소의 data-board-no 값을 가져옴
-                const boardTitle = $(this).text(); // 클릭한 요소의 텍스트 값을 가져옴
-                partModPop(boardNo, boardTitle); // board_no와 board_title 값을 인자로하여 partModPop 함수 호출
-            });
-
-            function partModPop(boardNo, boardTitle) {
+            function partModPop(boardNo) {
                 modal2.style.display = 'block';
                 dim.style.display = 'block';
 
-                // board_no와 board_title 값을 설정
-                $("#board_no").val(boardNo);
-                $("#boardTitle").val(boardTitle);
+                /*   // board_no와 board_title 값을 설정
+                   $("#board_no").val(boardNo);
+                   $("#boardTitle").val(boardTitle);*/
 
-                updateDept(boardNo)
                 getDept(boardNo);
             }
 
@@ -450,27 +445,13 @@
                     dataType: "json",
                     success: function (res) {
                         console.log("getDept : " + res.board_title);
+                        console.log("getDept : " + res.board_no);
+                        $("#boardNo").val(res.board_no);
                         $("#boardTitle").val(res.board_title);
                         $("#boardArry").val(res.board_arry);
                         $("#boardStatus").val(res.board_status);
                         $("#boardRegister").val(res.board_regi_ster);
                         $("#boardInfo").val(res.board_info);
-                    },
-                    error: function (XMLHttpRequest, textStatus, errorThrown) {
-                        console.log("통신 실패." + errorThrown);
-                    }
-                })
-            }
-
-            function updateDept(boardNo) {
-                $.ajax({
-                    type: "post",
-                    url: "/updateDept",
-                    data: {"board_no": boardNo},
-                    cache: false,
-                    dataType: "text",
-                    success: function (res) {
-                        console.log("getDept : " + res.board_title);
                     },
                     error: function (XMLHttpRequest, textStatus, errorThrown) {
                         console.log("통신 실패." + errorThrown);

@@ -15,4 +15,6 @@ public class BoardDTO {
     private String board_regi_ster;
     private Date board_regi_Date;
 
+
+
 }

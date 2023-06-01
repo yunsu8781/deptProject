@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Map;
 
 
 @Log4j2
@@ -17,8 +18,8 @@ public class BoardDAOImpl implements BoardDAO{
     private SqlSession sqlSession;
 
     @Override
-    public ArrayList boardList() throws Exception{
-        return(ArrayList)sqlSession.selectList("BoardMapper.getAllBoard");
+    public ArrayList boardList(Map searchData) throws Exception{
+        return(ArrayList)sqlSession.selectList("BoardMapper.getAllBoard", searchData);
     }
 
     @Override
@@ -38,9 +39,14 @@ public class BoardDAOImpl implements BoardDAO{
 
     @Override
     public void updateDept(BoardDTO boardDTO) throws Exception{
-        log.info("boardDTO : "+boardDTO);
         sqlSession.update("BoardMapper.updateDept", boardDTO);
     }
+
+/*    @Override
+    public ArrayList searchDept(Map searchData) throws Exception{
+        log.info("값 : " + searchData);
+       return(ArrayList)sqlSession.selectList("BoardMapper.getAllBoard", searchData);
+    }*/
 
 
 }

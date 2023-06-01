@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.ArrayList;
+import java.util.Map;
 
 @Log4j2
 @Service
@@ -16,8 +17,8 @@ public class BoardServiceImpl implements BoardService {
     private BoardDAO boardDAO;
 
     @Override
-    public ArrayList<BoardDTO> boardList() throws Exception {
-        return boardDAO.boardList();
+    public ArrayList<BoardDTO> boardList(Map searchData) throws Exception {
+        return boardDAO.boardList(searchData);
     }
 
     @Override
@@ -49,5 +50,11 @@ public class BoardServiceImpl implements BoardService {
         log.info("boardDTO : "+boardDTO);
         boardDAO.updateDept(boardDTO);
     }
+
+/*    @Override
+    public ArrayList searchDept(Map searchData)throws Exception{
+        log.info("값 : " + boardDAO.searchDept(searchData));
+        return boardDAO.searchDept(searchData);
+    }*/
 
 }

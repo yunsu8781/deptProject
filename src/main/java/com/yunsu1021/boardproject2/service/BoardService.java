@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public interface BoardService {
-    public ArrayList<BoardDTO> boardList() throws Exception;
+    public ArrayList<BoardDTO> boardList(Map searchData) throws Exception;
 
     public int totalCntBoard() throws Exception;
 
@@ -21,5 +21,7 @@ public interface BoardService {
     public BoardDTO getDeptData(String board_no) throws  Exception;
 
     public void updateDept(BoardDTO boardDTO) throws Exception;
+
+/*    public ArrayList searchDept(Map searchDept)throws Exception;*/
 
 }
