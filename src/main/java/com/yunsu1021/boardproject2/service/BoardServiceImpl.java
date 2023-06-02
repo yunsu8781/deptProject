@@ -17,7 +17,24 @@ public class BoardServiceImpl implements BoardService {
     private BoardDAO boardDAO;
 
     @Override
-    public ArrayList<BoardDTO> boardList(Map searchData) throws Exception {
+    public ArrayList<BoardDTO> boardList(Map<String, String > searchData) throws Exception {
+
+/*        log.info("searchStatus : " + searchData.get("searchStatus"));
+        log.info("searchArray : " + searchData.get("searchArray"));
+        log.info("searchTitle : " + searchData.get("searchTitle"));
+        log.info("limitStartNum : " +  searchData.get("limitStartNum"));*/
+
+
+        searchData.put("MaxPost", "8");
+
+        log.info("MaxPost : " +  searchData.get("MaxPost"));
+        if(searchData.get("limitStartNum") == null){
+            log.info("limitStartNum = " + searchData.get("limitStartNum"));
+            searchData.put("limitStartNum", "0");
+        }else if(searchData.get("limitStartNum") == ""){
+            searchData.put("limitStartNum", "0");
+            log.info("else를 탔다");
+        }
         return boardDAO.boardList(searchData);
     }
 

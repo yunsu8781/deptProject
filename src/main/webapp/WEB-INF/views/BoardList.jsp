@@ -171,12 +171,13 @@
                                         <option value="ASC">오름차순</option>
                                         <option value="DESC">내림차순</option>
                                     </select>
-                                    <input type="text" class="w200x mgr8 fl" placeholder="검색할 부서명을 입력하세요" name="keyword"
+                                    <input type="text" class="w200x mgr8 fl" placeholder="검색할 부서명을 입력하세요" name="searchTitle"
                                            value="">
                                     <button type="submit" class="btn-st1 w60x he36x mgr8 fl">
                                         <span>검색</span>
                                         <span class="fa fa-search"></span>
                                     </button>
+                                    <input type="hidden" value="${MaxPost}" name="MaxPost">
                                     <input type="hidden" value="${limitStartNum}" name="limitStartNum">
                                 </form>
                             </div>

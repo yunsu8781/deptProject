@@ -18,7 +18,11 @@ public class BoardDAOImpl implements BoardDAO{
     private SqlSession sqlSession;
 
     @Override
-    public ArrayList boardList(Map searchData) throws Exception{
+    public ArrayList boardList(Map<String, String> searchData) throws Exception{
+        log.info("searchStatus : " + searchData.get("searchStatus"));
+        log.info("searchArray : " + searchData.get("searchArray"));
+        log.info("searchTitle : " + searchData.get("searchTitle"));
+        log.info("limitStartNum : " +  searchData.get("limitStartNum"));
         return(ArrayList)sqlSession.selectList("BoardMapper.getAllBoard", searchData);
     }
 

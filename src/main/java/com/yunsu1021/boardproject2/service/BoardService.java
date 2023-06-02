@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public interface BoardService {
-    public ArrayList<BoardDTO> boardList(Map searchData) throws Exception;
+    public ArrayList<BoardDTO> boardList(Map<String, String> searchData) throws Exception;
 
     public int totalCntBoard() throws Exception;
 

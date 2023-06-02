@@ -24,11 +24,12 @@ public class BoardController {
     @RequestMapping("/")
     public String playBoardList(@RequestParam Map<String, String> searchData, Model model) throws Exception{
 
-        searchData.get("searchStatus");
-        searchData.get("searchArray");
-        searchData.get("searchTitle");
+        log.info("searchStatus : " + searchData.get("searchStatus"));
+        log.info("searchArray : " + searchData.get("searchArray"));
+        log.info("searchTitle : " + searchData.get("searchTitle"));
+        log.info("limitStartNum : " +  searchData.get("limitStartNum"));
+        log.info("MaxPost : " + searchData.get("MaxPost"));
 
-        searchData.get("limitStartNum");
 
         List<BoardDTO> boardList = boardService.boardList(searchData);
         int totalCntBoard = boardService.totalCntBoard();

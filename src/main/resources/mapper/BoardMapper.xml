@@ -5,18 +5,58 @@
 
     <!--부서 리스트 출력-->
     <select id="getAllBoard" parameterType="java.util.Map" resultType="com.yunsu1021.boardproject2.dto.BoardDTO">
-        <if test="searchStatus == null and searchArray == null and keyword == null">
-            SELECT * FROM board order by board_no desc l;
-        </if>
-        <if test="searchStatus != null and searchArray != null and keyword != null">
-            SELECT * FROM board WHERE board_title LIKE '%${keyword}%' AND board_status = '${searchStatus}'
-            ORDER BY board_arry ${searchArray}
-        </if>
+
+        <choose>
+
+            <when test="searchStatus == null and searchArray == null and searchTitle == null">
+                SELECT * FROM board ORDER BY board_no DESC LIMIT ${limitStartNum}, ${MaxPost};
+            </when>
+            <when test="(searchStatus != '' and searchStatus != null) and (searchArray != '' and searchArray != null) and (searchTitle != '' and searchTitle != null)">
+                SELECT * FROM board
+                WHERE board_title LIKE '%${keyword}%' and board_status = '${searchStatus}'
+                ORDER BY board_arry ${searchArray}
+                LIMIT ${limitStartNum}, ${MaxPost}
+            </when>
+            <when test="(searchStatus != '' and searchStatus != null) and (searchArray == '' and searchArray == null) and (searchTitle != '' and searchTitle != null)">
+                SELECT * FROM board
+                WHERE board_title LIKE '%${keyword}%' and board_status = '${searchStatus}'
+                LIMIT ${limitStartNum}, ${MaxPost}
+            </when>
+            <when test="(searchStatus != '' and searchStatus != null) and (searchArray != '' and searchArray != null) and (searchTitle == '' and searchTitle == null)">
+                SELECT * FROM board
+                WHERE board_status = '${searchStatus}'
+                ORDER BY board_arry ${searchArray}
+                LIMIT ${limitStartNum}, ${MaxPost}
+            </when>
+            <when test="(searchStatus != '' and searchStatus != null) and (searchArray == '' and searchArray == null) and (searchTitle == '' and searchTitle == null)">
+                SELECT * FROM board
+                WHERE board_status = '${searchStatus}'
+                LIMIT ${limitStartNum}, ${MaxPost}
+            </when>
+            <when test="(searchStatus == '' and searchStatus == null) and (searchArray != '' and searchArray != null) and (searchTitle != '' and searchTitle != null)">
+                SELECT * FROM board
+                WHERE board_title LIKE '%${keyword}%'
+                ORDER BY board_arry ${searchArray}
+                LIMIT ${limitStartNum}, ${MaxPost}
+            </when>
+            <when test="(searchStatus == '' and searchStatus == null) and (searchArray == '' and searchArray == null) and (searchTitle != '' and searchTitle != null)">
+                SELECT * FROM board
+                WHERE board_title LIKE '%${keyword}%'
+                LIMIT ${limitStartNum}, ${MaxPost}
+            </when>
+            <when test="(searchStatus == '' and searchStatus == null) and (searchArray != '' and searchArray != null) and (searchTitle == '' and searchTitle == null)">
+                SELECT * FROM board
+                ORDER BY board_arry ${searchArray}
+                LIMIT ${limitStartNum}, ${MaxPost}
+            </when>
+
+        </choose>
     </select>
 
     <!--총 수-->
     <select id="totalCntBoard" resultType="int">
-        SELECT COUNT(*) FROM board;
+        SELECT COUNT(*)
+        FROM board;
     </select>
 
     <insert id="insertBoard" parameterType="com.yunsu1021.boardproject2.dto.BoardDTO">
@@ -25,18 +65,19 @@
     </insert>
 
     <select id="getDeptData" parameterType="String" resultType="com.yunsu1021.boardproject2.dto.BoardDTO">
-        select * from board where board_no = #{board_no} ;
+        select *
+        from board
+        where board_no = #{board_no};
     </select>
 
     <update id="updateDept" parameterType="com.yunsu1021.boardproject2.dto.BoardDTO">
         UPDATE board
-        SET
-            board_title = #{board_title} ,
-            board_arry = #{board_arry} ,
-            board_status = #{board_status} ,
-            board_regi_ster = #{board_regi_ster} ,
-            board_info = #{board_info}
-        WHERE board_no = #{board_no} ;
+        SET board_title     = #{board_title},
+            board_arry      = #{board_arry},
+            board_status    = #{board_status},
+            board_regi_ster = #{board_regi_ster},
+            board_info      = #{board_info}
+        WHERE board_no = #{board_no};
     </update>
 
 </mapper>
